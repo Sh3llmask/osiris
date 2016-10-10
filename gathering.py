@@ -46,9 +46,10 @@ closedPorts = []
 #The checker function is used to confirm if all the needed packages are installed
 ext = leaving()
 def checker():
-	#Checks if nmap is installed
+	#Checker function is used to check all the needed things to run this tool
 	FNULL = open(os.devnull, 'w')
 	try:
+		#First checks if the nmap is installed
 		nmap = subprocess.call(['nmap','-V'], stdout=FNULL, stderr=subprocess.STDOUT)
 		nmapInstalled = True
 		print "[>] Nmap already installed"
@@ -77,21 +78,27 @@ def checker():
 	time.sleep(1)
 
 def start(argv):
-#This is the main function. Starts the tool and analizes the argv..
+#This is the main function. Starts the tool and analizes the arguments given..
 	if len(sys.argv) < 2:
 		print banner
 		print help
 		print ext
 		sys.exit()
+	elif "-b" in sys.argv:
+		print "-b option selected"
 	else:
 		print banner
 		checker()
 			
 def icmpRequest(IP):
-#Performs an ICMP Request to check if the host is up | " > /dev/null 2>&1"
+#Performs an ICMP Request to check if the host is up
+	#Identify the operating system running
 	ops = platform.system()
 	if (ops == "Windows"):
-		pingCmd = "-n 1"
+		pingCmd = "n 1"
+		# print "[!] Only for Linux minds."
+		# print ext
+		# sys.exit()
 	elif (ops == "Linux"):
 		pingCmd = "-c 1 "
 	else :
@@ -120,9 +127,11 @@ def icmpRequest(IP):
 		except KeyboardInterrupt:
 			print ext
 			sys.exit()
-		
+#def networkScan():
+	#Search the network for avaliable hosts
 def portChecker(ports, IP):
-	#Port scanner 
+	#This function creates a socket and scans each port of the "ports" list
+	#Finally prints the status of each port
 	t1 = datetime.now()
 	print "[>] Starting port scanner at: ", t1
 	try:
@@ -160,9 +169,3 @@ IP = [sys.argv[1]]
 outputFile = "/output/"+sys.argv[1]+".txt"
 icmpRequest(IP)
 portChecker(ports, IP)
-
-######################################################
-#REFERENCES:##########################################
-######################################################
-#Hacking y Forensic: Desarrolle sus propias herramientas en Python
-#Creates a socket https://books.google.es/books?id=QXkcdCqMu4QC&pg=PA206&lpg=PA206&dq=guardar+direccion+IP+en+lista++python&source=bl&ots=sajsZtxEGS&sig=4EXcODPhPOI04NGgc-2GMZr3zYM&hl=es&sa=X&ved=0ahUKEwjW49rP2cPPAhXBoBQKHY0jBG0Q6AEIKjAC#v=onepage&q=guardar%20direccion%20IP%20en%20lista%20%20python&f=false
