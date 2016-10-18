@@ -63,7 +63,6 @@ def ping(addr):
 	try:
 		FNULL = open(os.devnull, 'w') #/DEV/NULL
 		icmpResponse = subprocess.call(['ping',pingCmd, "1", addr], stdout=FNULL, stderr=subprocess.STDOUT)#Preforms a ping and redirect output to /dev/null
-		print icmpResponse
 		if icmpResponse == 0:
 			return True
 		else:
