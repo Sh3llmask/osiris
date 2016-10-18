@@ -132,6 +132,16 @@ elif("-r"in sys.argv)or("--reverse"in sys.argv):
 	targets.append(address)
 elif("-fk"in sys.argv or "--fake"in sys.argv):
 	fakeIP = randomIP(net)
+elif("-f"in sys.argv):
+	#Output file
+	pwd = subprocess.call(['pwd'])
+	print "[?] Current output location: "+str(pwd)+"/output/"
+	outputFileD = raw_input("[?] Do you want to specify a new output directory?(Y/N): ")
+	if ((outputFileD=="y")or(outputFileD=="Y")):
+		outputFile = raw_input("[>] Specify the path of the new output file: ")
+		print "[!] New output file set to: " +outputFile
+	else: 
+		pass	
 else:
 	targets.append(address)
 ct = len(targets)		
