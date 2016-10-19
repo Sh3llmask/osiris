@@ -49,7 +49,7 @@ def iCheck():
 #Initial Check
 	FNULL = open(os.devnull, 'w')
 	# Connectivity checking
-	obt = 25.5.5.5
+	obt = "25.5.5.5"
 	ctvt = ping(obt)
 	if (ctvt == True):
 		conectivity = True
@@ -139,14 +139,13 @@ if "/" in address: # If there's a slash on the IP this will check all the target
 	for su in range(firstIP, hostRange):
 		addr = net+str(su)
 		targets.append(addr) #Stores the IPs in the targets list
-elif("-r"in sys.argv):)or("--reverse"in sys.argv):):
+elif("-r"in sys.argv)or("--reverse"in sys.argv):
 	# If the host is provided by a domain address 
 	# Converts the hostname to IPv4 format
-	ipv4 = socket.gethostbyname('sys.argv[1]')
+	ipv4 = socket.gethostbyname(address)
 	print "[?] The domain: "+address+" seems to be: "+ipv4
-	address = ipv4 
 	targets.append(address)
-elif("-fk"in sys.argv): or "--fake"in sys.argv):):
+elif("-fk"in sys.argv) or ("--fake"in sys.argv):
 	fakeIP = randomIP(net)
 elif("-f"in sys.argv):
 	#Output file
@@ -212,11 +211,10 @@ for i in targetsUp:
 	print ""
 	print "*"*60
 	oPts = len(openPorts)
-	if oPts == 0;
+	if oPts == 0:
 		print "[!] No open ports!"
-	elif oPts > 0;
+	elif oPts > 0:
 		print "[?] We have discovered "+str(oPts)+" open ports"
-	print ""
 ts2 = datetime.now()
 tst = ts2 - ts1
 print "\n[?] The scanner took: ", tst, "to scan the ports"
