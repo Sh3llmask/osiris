@@ -139,16 +139,16 @@ if "/" in address: # If there's a slash on the IP this will check all the target
 	for su in range(firstIP, hostRange):
 		addr = net+str(su)
 		targets.append(addr) #Stores the IPs in the targets list
-elif("-r"in address)or("--reverse"in address):
+elif("-r"in sys.argv):)or("--reverse"in sys.argv):):
 	# If the host is provided by a domain address 
 	# Converts the hostname to IPv4 format
 	ipv4 = socket.gethostbyname('sys.argv[1]')
 	print "[?] The domain: "+address+" seems to be: "+ipv4
 	address = ipv4 
 	targets.append(address)
-elif("-fk"in address or "--fake"in address):
+elif("-fk"in sys.argv): or "--fake"in sys.argv):):
 	fakeIP = randomIP(net)
-elif("-f"in address):
+elif("-f"in sys.argv):
 	#Output file
 	pwd = subprocess.call(['pwd'])
 	print "[?] Current output location: "+str(pwd)+"/output/"
