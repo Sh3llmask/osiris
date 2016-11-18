@@ -30,7 +30,7 @@ class WorkerThread(threading.Thread) :
 			sys.exit()
 	def run(self) :
 		while True :
-			addr = '91.134.135.18'
+			addr = ''
 			widgets = ['[>] Brute: ', Percentage(), ' ', Bar(marker='#',left='[',right=']')]	
 			username = "ftpuser"
 			passwdsPath ="E:\passwds.txt"
