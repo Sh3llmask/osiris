@@ -8,36 +8,38 @@
 
 Usage: 
 
-	python ./osiris.py <target> [Parameters]
+	python ./osiris.py -u <target> [options]
 	
-	-S [--stealth : Preform a stealth scan]
-	-a [--auto : Standard parameter to scan and find vulnerabilities]
-	-f [ -f (path) : Specify a path for the output file. The default directory is: /output/]
-	-r [--reverse : Take a hostname as a target]
-	-b [Scan the network to find devices]
+	-u or --host <target>	IP or domain of the target to scan
+	-b or --brute		Enables the brute force // Not working yet
+	-f or --output <path>	Specify the output file // Not working yet
+	-r or --reverse		Converts the hostname to IPv4 format (This is going to be changed)
+	-h or --help		Show info about osiris
+	--version		Prints the version of osiris
+	
 	
 	Example of usage:
 		
 		- Execute osiris and change the output file:
 		
-		> python ./osiris.py 192.168.1.1 -f 
+		> python ./osiris.py -u 192.168.1.1 -f /tmp/192.168.1.1-scan.txt
 	
 		- Execute osiris and scans from host 5 to host 100:
 		
-		> python ./osiris.py 192.168.1.5/100 
+		> python ./osiris.py -u 192.168.1.5/100 (You may have some problems on version 0.2 with this)
 		
 		- Execute osiris with a domain name 
 		
-		> python ./osiris.py http://www.facebook.com/ -r
+		> python ./osiris.py -u http://www.facebook.com/ -r
 		
 Requeriments:
 	
 	Osiris only working on Windows and Linux
-	You'll need to have python installed to run this tool
+	You'll need to have python2.7 installed to run this tool
 
 Autor:
 	
-	You can contact with me through email: m3isterlinux@protonmail.com
+	You can contact with me through email: meisterlinux@protonmail.com
 	You can follow me on twitter as @linuxm3ister
 	
 [!] Happy Hunting boyz [!]
