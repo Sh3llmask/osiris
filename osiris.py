@@ -41,23 +41,7 @@ def usage():
 
 		> python ./osiris.py http://www.facebook.com/ -r
 	"""
-# def iCheck():
-# #Initial Check
-	# FNULL = open(os.devnull, 'w')
-	# # Connectivity checking
-	# obt = "25.5.5.5"
-	# ctvt = ping(obt)
-	# if (ctvt == True):
-		# conectivity = True
-	# else:
-		# conectivity = False
-	# # Check modules needed to run osiris
-	# try:
-		# #First checks if the nmap is installed
-		# nmap = subprocess.call(['nmap','-V'], stdout=FNULL, stderr=subprocess.STDOUT)
-		# nmapInstalled = True
-	# except:
-		# print "[!] Nmap not installed!"
+
 def ping(addr):
 #Performs a simple ICMP Request to check if the host is up.
 	ops = platform.system()
@@ -109,15 +93,7 @@ def bannerGrab (addr, port):
 			return msg
 	except:	
 		return "[+]=========[!]> Couldn't connect to the server\n[|]"
-		# msg = s.recv(1254)
-		# if len(msg)!=0:
-			# msg = "[+]=========[-]> "+msg
-			# return msg
-		# else:
-			# return "[+]=========[-]> Nothing to listen here"
-	# except:
-		# print "[+]=========[!]> Couldn't connect to the server"
-		# return 
+
 
 def randomIP(net):
 	byte4 = random.randrange(1,254)
