@@ -219,4 +219,4 @@ for i in targetsUp:
 ts2 = datetime.now()
 tst = ts2 - ts1
 print "\n[?] The scanner took: ", tst, "to scan the ports"
-#https://pentestlab.blog/2012/03/01/attacking-the-ftp-service/
+
