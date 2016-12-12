@@ -1,8 +1,13 @@
 
         [01001111 01110011 01101001 01110010 01101001 01110011] 
 		
-	Osiris is a python tool used to scan a host looking for open ports and its services. Actually osiris uses sockets to stablish a 	connection with the target host but this will be changed soon, implementing a 3way handshake for more accuraccy scanner. Also 
-	Osiris provides you a force brute tool for FTP, SSH and Telnet services. This tool is quite new so many facts aren't fully 		implemented. I want Osiris to be able to upload a reverse shell on the target if a vulnerabilitie is found. For making easy to 		configure the tool I will add attack profiles where you can customice your own kind of scanner.
+	Osiris is a python tool used to scan a host looking for open ports and its services.
+	Actually osiris uses sockets to stablish a connection with the target host but this will be changed soon, 
+	implementing a 3way handshake for more accuraccy scanner. Also 
+	Osiris provides you a force brute tool for FTP, SSH and Telnet services. 
+	This tool is quite new so many facts aren't fully implemented. 
+	I want Osiris to be able to upload a reverse shell on the target if a vulnerabilitie is found. 
+	For making easy to configure the tool I will add attack profiles where you can customice your own kind of scanner.
 	
 	Osiris is a python tool used to scan a network looking for available hosts, and which ports have each host open. It simply 
 	uses ECHO Requests to test if the host is up. Also Osiris uses sockets to check which ports are open.
