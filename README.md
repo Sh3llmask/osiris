@@ -8,10 +8,6 @@
 	This tool is quite new so many facts aren't fully implemented. 
 	I want Osiris to be able to upload a reverse shell on the target if a vulnerabilitie is found. 
 	For making easy to configure the tool I will add attack profiles where you can customice your own kind of scanner.
-	
-	Osiris is a python tool used to scan a network looking for available hosts, and which ports have each host open. It simply 
-	uses ECHO Requests to test if the host is up. Also Osiris uses sockets to check which ports are open.
-	Furthermore Osiris provides you a description for each port and the services that can be running on it.
 
 Usage: 
 
@@ -41,13 +37,13 @@ Usage:
 		
 Requeriments:
 	
-	Osiris only working on Windows and Linux
+	Osiris is designed for Linux minds. This tool may work on Windows but many features 
+	won't work properly.
 	You'll need to have python2.7 installed to run this tool
 
 Autor:
 	
-	You can contact with me through email: meisterlinux@protonmail.com
-	You can follow me on twitter as @linuxm3ister
+	@Sh3llmask 
 	
 [!] Happy Hunting boyz [!]
 	
