@@ -122,7 +122,7 @@ parser.add_option("-f", "--output", dest="outputFile", help="Specify the output 
 (options, args) = parser.parse_args()
 
 
-if len(args) < 1:
+if len(sys.argv) < 2:
 	print "No enough arguments gievn"
 	print examples
 	sys.exit()
