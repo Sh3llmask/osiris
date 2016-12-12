@@ -16,17 +16,8 @@ ext = leaving()
 
 ######## FUNCTIONS ########
 
-def usage():
-	print """
-	Usage:
-	python ./osiris.py <target> [Parameters]
 
-	-S [--stealth : Preform a stealth scan]
-	-a [--auto : Standard parameter to scan and find vulnerabilities]
-	-f [ -f (path) : Specify a path for the output file. The default directory is: /output/]
-	-r [--reverse : Take a hostname as a target]
-	-b [Scan the network to find devices]
-
+examples = """
 	Example of usage:
 
 		- Execute osiris and change the output file:
@@ -39,9 +30,8 @@ def usage():
 
 		- Execute osiris with a domain name
 
-		> python ./osiris.py http://www.facebook.com/ -r
+		> python ./osiris.py www.facebook.com
 	"""
-
 def ping(addr):
 #Performs a simple ICMP Request to check if the host is up.
 	ops = platform.system()
@@ -62,7 +52,17 @@ def ping(addr):
 	except KeyboardInterrupt:
 		print ext
 		sys.exit()
-
+def IPresolver(addr):
+    # Resolve the IP address
+	try:
+		ipv4 = socket.gethostbyname(addr)
+	except:
+		print addr +": Unknown host"
+	try:
+		ipv4 = socket.gethostbyaddr(addr)
+		print ipv4
+	except:
+		print ipv4
 def portScan(port, addr):
 	#Function used to scan the listed ports and see which ones are open
 	try:
@@ -81,17 +81,18 @@ def portScan(port, addr):
 	except socket.error:
 		print "[!] Couldn't connect to the server"
 def bannerGrab (addr, port):
+	# Simple banner grab (This is going to be changed soon)
 	try:
 		s = socket.socket()
 		s.connect((addr, port))
 		msg = ""
-		while len(msg) < 1024:
-			chunk = s.recv(1024)
-			if chunk == '':
-				return "[+]=========[-]> Nothing to listen here\n[|]"
-			msg = "[+]=========[-]> "+ msg + chunk
-			return msg
-	except:	
+		while len(msg) < 256:
+			chunk = s.recv(100)
+			introduction = "[+]=========[-]> "
+			buf = introduction + chunk
+			msg = msg + "\n" + buf
+		return msg
+	except:
 		return "[+]=========[!]> Couldn't connect to the server\n[|]"
 
 
@@ -99,16 +100,13 @@ def randomIP(net):
 	byte4 = random.randrange(1,254)
 	scr_addr = net+byte4
 	return scr_addr
-def cloudFlare():
-#Resolves the real IP of a site
-	return
 
 ######### VARIABLES ########
 
 targets = [] 	# A list of targets to scan
 targetsUp = [] 	# All the hosts up
 # portsFile = open('ports.txt', 'r').readlines
-ports = [21, 22, 23, 80, 139, 443, 8080]
+ports = [21, 22, 23, 25, 49, 53, 80, 115, 137, 139, 156, 161, 194, 443, 546, 8080]
 openPorts = [] 	# List of open ports
 # outputFile = "/output/"+sys.argv[1]+".txt"
 pingConfirm = False
@@ -124,17 +122,16 @@ parser.add_option("-f", "--output", dest="outputFile", help="Specify the output 
 (options, args) = parser.parse_args()
 
 
-
-if len(sys.argv)<2:
-	usage()
-	print ext
+if len(args) < 1:
+	print "No enough arguments gievn"
+	print examples
 	sys.exit()
-else: 
+elif options.Host == " ":
+	print "You must specify a target"
+	sys.exit()
+else:
 	address = options.Host
-	
-print address
-print socket.gethostbyaddr(address)
-	
+
 ############# ARGUMENTS IDENTIFICATION ############
 
 if "/" in address: # If there's a slash on the IP this will check all the targets
@@ -147,16 +144,8 @@ if "/" in address: # If there's a slash on the IP this will check all the target
 	firstIP = int(netS[3])
 	for su in range(firstIP, hostRange):
 		addr = net+str(su)
-		targets.append(addr) #Stores the IPs in the targets list
-elif("-r"in sys.argv)or("--reverse"in sys.argv):
-	# If the host is provided by a domain address
-	# Converts the hostname to IPv4 format
-	ipv4 = socket.gethostbyname(address)
-	print "[?] The domain: "+address+" seems to be: "+ipv4
-	targets.append(address)
-elif("-fk"in sys.argv) or ("--fake"in sys.argv):
-	fakeIP = randomIP(net)
-elif("-f"in sys.argv):
+		targets.append(addr) #Stores the IPs in the targets lelif("-r"in sys.argv)or("--reverse"in sys.argv):
+if(options.outputFile):
 	#Output file
 	pwd = subprocess.call(['pwd'])
 	print "[?] Current output location: "+str(pwd)+"/output/"
@@ -164,10 +153,12 @@ elif("-f"in sys.argv):
 	if ((outputFileD=="y")or(outputFileD=="Y")):
 		outputFile = raw_input("[>] Specify the path of the new output file: ")
 		print "[!] New output file set to: " +outputFile
+		targets.append(address)
 	else:
 		pass
-else:
-	targets.append(address)
+		targets.append(address)
+IPresolver(address)
+targets.append(address)
 ct = len(targets)
 if ct != 0: # If there is no targets the program will finish
 	print "[?] The number of: "+str(ct)+" hosts are going to be scanned."
