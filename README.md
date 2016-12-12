@@ -42,8 +42,9 @@ Requeriments:
 	You'll need to have python2.7 installed to run this tool
 
 Autor:
-	
+
 	@Sh3llmask 
+	Special thanks to @someone25 :)
 	
 [!] Happy Hunting boyz [!]
 	
