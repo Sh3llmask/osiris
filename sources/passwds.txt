@@ -1,0 +1,7 @@
+asd
+root
+admin
+anonymous
+ftp
+ftpuser
+

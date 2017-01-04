@@ -1,0 +1,20 @@
+﻿  ### VERSION 0.2
+
+  + Fixed reverse scanning (You don't need to use -r any more)
+  + Simple banner grab implemented by socket.recv()
+  + Added optparse to manage the args
+  + Source code cleaned
+
+  ### VERSION 0.3
+
+  + Three way handshake TCP implementation using Scapy
+  + Scapy implemented to the tool, now you must have Scapy installed
+  + I have added the FTP brute force but this will be upgraded later and I will implement SSH, TELNET and other protocols 
+    to brute.
+  + All the code has been changed 
+  + Simple identifiaction of services has been implemented, this may have some bugs that I'll fix in next versions. Still not 
+    working with web servers
+  + Now osiris identificate the FILTRED ports
+
+  ? You may have some issues with multi host scanning on this version (it haven't been fully implemented yet)
+  ? More things such as web server identification will be implemented soon in this version
