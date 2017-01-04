@@ -14,32 +14,35 @@ Usage:
 	python ./osiris.py -u <target> [options]
 	
 	-u or --host <target>	IP or domain of the target to scan
-	-b or --brute		Enables the brute force // Not working yet
+	-b or --brute		Enables the brute force 
 	-f or --output <path>	Specify the output file // Not working yet
-	-r or --reverse		Converts the hostname to IPv4 format (This is going to be changed)
 	-h or --help		Show info about osiris
+	-c or --config		Change the default parameters (Not working yet)
 	--version		Prints the version of osiris
 	
 	
 	Example of usage:
+		- Run a SYN scan and try to brute force:
+		> sudo python ./osiris.py -u <target> -b
 		
 		- Execute osiris and change the output file:
 		
-		> python ./osiris.py -u 192.168.1.1 -f /tmp/192.168.1.1-scan.txt
+		> python sudo ./osiris.py -u 192.168.1.1 -f /tmp/192.168.1.1-scan.txt
 	
 		- Execute osiris and scans from host 5 to host 100:
 		
-		> python ./osiris.py -u 192.168.1.5/100 (You may have some problems on version 0.2 with this)
+		> python sudo ./osiris.py -u 192.168.1.5/100 (You may have some problems on version 0.3 with this)
 		
 		- Execute osiris with a domain name 
 		
-		> python ./osiris.py -u http://www.facebook.com/ -r
+		> python sudo ./osiris.py -u http://www.facebook.com/ 
 		
 Requeriments:
 	
-	Osiris is designed for Linux minds. This tool may work on Windows but many features 
-	won't work properly.
+	Osiris is designed for Linux minds. 
 	You'll need to have python2.7 installed to run this tool
+	Since version 0.3 you need Scapy to run this tool (apt intall scapy)
+	You must run this tool as sudo
 
 Autor:
 
