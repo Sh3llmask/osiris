@@ -31,7 +31,7 @@ RSTACK = 0x14
 FNULL = open(os.devnull, 'w') #/DEV/NULL
 password_path = 'sources/passwds.txt' #Path of the password dictionary
 BRUTE_USER = "ftpuser"
-
+interfaces = os.listdir('/sys/class/net/')
 ##### FLAGS #####
 
 ICMP_PING = True
@@ -101,9 +101,10 @@ def ICMPing(addr):
     # Check if the host is up by a simple ICMP Ping
     conf.verb = 0
     TIMEOUT = 20
+    global interfaces #Quick fix for interfaces
     try:
         pckt = IP(dst=addr, ttl=50)/ICMP() #Craft the ICMP packet
-        reply = sr(pckt, iface="wlp5s0",verbose=0, timeout=TIMEOUT) # Sends the packet and stores the reply
+        reply = sr(pckt, iface=interfaces[1],verbose=0, timeout=TIMEOUT) # Sends the packet and stores the reply
         if reply != None:
             return True
         else:
